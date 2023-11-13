@@ -1,10 +1,16 @@
 <template>
-  <div class="mb-2 text-center text-2xl">Difficulty</div>
+  <div class="mb-2 text-center text-2xl mt-6">Difficulty</div>
   <div class="grid text-center">
-    <div class="col" v-for="difficulty in state.difficulties">
-      <Button text raised rounded class="large" severity="info" @click="selectDifficulty(difficulty)" :label="difficulty" />
-    </div>
-  </div>
+        <div class="col" v-for="difficulty in state.difficulties" :key="difficulty">
+          <Button
+            text raised rounded class="large"
+            severity="info"
+            :class="{ 'btn-selected': difficulty === quizStore.selectedDifficulty }"
+            @click="selectDifficulty(difficulty)"
+            :label="difficulty"
+          />
+        </div>
+      </div>
 </template>
 
 <script setup>
@@ -14,10 +20,20 @@ import { useQuiz } from '@/store/modules/quiz';
 const quizStore = useQuiz();
 
 const state = reactive({
-    difficulties: ["Easy", "Medium", "Hard"],
+  difficulties: ["Easy", "Medium", "Hard"],
 });
 
 const selectDifficulty = (difficulty) => {
-  quizStore.setDifficulty(difficulty);
+  if (quizStore.selectedDifficulty === difficulty) {
+    quizStore.setDifficulty(null);
+  } else {
+    quizStore.setDifficulty(difficulty);
+  }
 };
 </script>
+
+<style scoped>
+.btn-selected {
+  background-color: #f9fafc;
+}
+</style>

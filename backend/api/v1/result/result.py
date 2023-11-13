@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.controllers import ResultController  # Import the ResultController
 from app.schemas.quiz.schema import ResultIn, ResultOut, Result as ResultSchema
+from app.schemas.quiz.schema import UserOut, QuizOut, CategoryOut
 from typing import List
 from core.factory import Factory
 
@@ -29,3 +30,27 @@ async def update_result(id: int, result: ResultIn, controller: ResultController 
 async def delete_result(id: int, controller: ResultController = Depends(Factory().get_result_controller)):
     await controller.delete(id)
     return {"message": "Result deleted successfully"}
+
+@result_router.get("/top-performer/")
+async def get_top_performer(controller: ResultController = Depends(Factory().get_result_controller)) -> UserOut:
+    try:
+        # This will call the controller method and should return a single UserOut
+        return await controller.get_top_performer()
+    except HTTPException as http_ex:
+        # Re-raise the HTTPException
+        raise http_ex
+    except Exception as e:
+        # For any other exceptions, return a generic error response
+        raise HTTPException(status_code=500, detail=str(e))
+
+@result_router.get("/least-correct-results-user/", response_model=UserOut)
+async def get_least_correct_results_user(controller: ResultController = Depends(Factory().get_result_controller)) -> UserOut:
+    try:
+        # This will call the controller method and should return a single UserOut
+        return await controller.get_least_correct_results_user()
+    except HTTPException as http_ex:
+        # Re-raise the HTTPException
+        raise http_ex
+    except Exception as e:
+        # For any other exceptions, return a generic error response
+        raise HTTPException(status_code=500, detail=str(e))

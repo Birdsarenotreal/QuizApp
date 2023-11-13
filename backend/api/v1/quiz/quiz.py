@@ -30,3 +30,16 @@ async def update_quiz(id: int, quiz: QuizIn, controller: QuizController = Depend
 async def delete_quiz(id: int, controller: QuizController = Depends(Factory().get_quiz_controller)):  
     await controller.delete(id)
     return {"message": "Quiz deleted successfully"}
+
+@quiz_router.get("/most-popular-quiz/", response_model=QuizOut)
+async def get_most_popular_quiz(controller: QuizController = Depends(Factory().get_quiz_controller)) -> QuizOut:
+    try:
+        # This will call the controller method and should return a single QuizOut
+        return await controller.get_most_popular_quiz()
+    except HTTPException as http_ex:
+        # Re-raise the HTTPException
+        raise http_ex
+    except Exception as e:
+        # For any other exceptions, return a generic error response
+        raise HTTPException(status_code=500, detail=str(e))
+    

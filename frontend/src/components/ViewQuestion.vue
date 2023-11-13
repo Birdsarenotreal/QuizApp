@@ -1,30 +1,27 @@
 <template>
   <h2 class="text-center">{{ question.question_text }}</h2>
   <div
-    v-for="(choice, index) in props.question.options.split(',')"
+    v-for="(choice, index) in question.options.split(',')"
     :key="index"
     class="flex justify-content-center mt-3"
   >
     <RadioButton
-      v-model="state.selectedChoice"
-      :inputId="index"
-      name="dynamic"
-      :value="choice"
+      v-model="selectedChoice"
+      :inputId="'choice-' + index"
+      name="choice"
+      :value="(index + 1)"
+      @change="onChoiceChange(index + 1)"
     />
-    <label :for="index" class="ml-2 text-xl text-center">{{ choice }}</label>
+    <label :for="'choice-' + index" class="ml-2 text-xl text-center">{{ choice }}</label>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   question: {
-    type: String,
-    required: true,
-  },
-  choices: {
-    type: Array,
+    type: Object,
     required: true,
   },
   onAnswer: {
@@ -33,8 +30,17 @@ const props = defineProps({
   },
 });
 
-const state = reactive({
-  selectedChoice: null,
-});
+const selectedChoice = ref(null);
 
+// Emit the selected choice when it changes
+const onChoiceChange = (choice) => {
+  props.onAnswer(choice, props.question.id);
+};
+
+// If you want to watch for the selected choice change inside the component
+watch(selectedChoice, (newValue) => {
+  if (newValue !== null) {
+    props.onAnswer(newValue, props.question.id);
+  }
+});
 </script>

@@ -1,21 +1,8 @@
 <template>
   <div class="main-wrapper">
-    <div class="main-container">
-      <!-- <SelectDifficulty v-if="quizStore.quizStatus !== 'STARTED' && quizStore.quizStatus !== 'FINISHED'" /> -->
-      <div v-if="quizStore.quizStatus !== 'STARTED' && quizStore.quizStatus !== 'FINISHED'" class="mt-6">
-        <SelectCategories />
-      </div>
-      <div v-if="quizStore.quizStatus !== 'STARTED' && quizStore.quizStatus !== 'FINISHED' && quizStore.selectedCategory" class="mt-6">
-        <SelectQuiz />
-      </div>
-      <div v-if="quizStore.quizStatus !== 'STARTED' && quizStore.quizStatus !== 'FINISHED'" class="text-center mt-6">
-        <Button @click="startQuiz" raised text label="Start!"></Button>
-      </div>
-      <div v-if="quizStore.quizStatus === 'STARTED' || quizStore.quizStatus === 'FINISHED'" class="mt-6">
-        <Quiz />
-      </div>
+    <div class="main-container relative">
+          <router-view></router-view>
     </div>
-
     <div class="footer">
       <div class="footer-content">
         <a
@@ -45,35 +32,6 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted } from "vue";
-import SelectCategories from "@/components/SelectCategories.vue";
-import SelectDifficulty from "@/components/SelectDifficulty.vue";
-import SelectQuiz from "./components/SelectQuiz.vue";
-import Quiz from "@/components/Quiz.vue";
-import QuizApi from "@/api/quiz";
-const quizApi = new QuizApi();
-
-import { useQuiz } from "@/store/modules/quiz";
-
-const quizStore = useQuiz();
-
-const startQuiz = () => {
-  quizStore.setQuizStatus("STARTED");
-};
-
-onMounted(async () => {
-  const quizzesResponse = await quizApi.getAllQuizzes();
-  const usersResponse = await quizApi.getAllUsers();
-
-  const categories = quizzesResponse.data.value.map((quiz) => quiz.category);
-
-  quizStore.setQuizzes(quizzesResponse.data.value);
-  quizStore.setCategories(categories);
-  quizStore.setUsers(usersResponse.data.value)
-});
-</script>
-
 <style scoped>
 ::selection {
   background-color: #4ac58e79;
@@ -94,7 +52,7 @@ a {
   max-width: 1448px;
   margin: 0 auto;
   padding: 5.5rem 6rem 3rem;
-
+  margin-bottom: 3rem;
   min-height: 100%;
 }
 

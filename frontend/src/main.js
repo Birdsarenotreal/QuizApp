@@ -6,6 +6,7 @@ import './assets/main.css'
 import 'primevue/resources/themes/lara-dark-teal/theme.css'
 
 import { createApp } from "vue";
+import router from "./router";
 import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import AutoComplete from 'primevue/autocomplete';
@@ -104,8 +105,7 @@ import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
-import Tailwind from 'primevue/passthrough/tailwind';
-
+import Tailwind from "primevue/passthrough/tailwind";
 import { createPinia } from "pinia";
 
 const app = createApp(App).use(createPinia())
@@ -115,6 +115,7 @@ app.use(PrimeVue, { ripple: true});
 app.use(ConfirmationService);
 app.use(ToastService);
 app.use(DialogService);
+app.use(router);
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);

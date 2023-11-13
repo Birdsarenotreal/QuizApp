@@ -8,11 +8,11 @@ export default class QuizApi {
 
   // Answer endpoints
   async getAllAnswers() {
-    return useHttp('/v1/answer/', "GET");
+    return useHttp("/v1/answer/", "GET");
   }
 
   async createAnswer(data) {
-    return useHttp(`/v1/answer/`, 'POST', data);
+    return useHttp(`/v1/answer/`, "POST", data);
   }
 
   async getAnswer(id) {
@@ -20,20 +20,20 @@ export default class QuizApi {
   }
 
   async updateAnswer(id, data) {
-    return useHttp(`/v1/answer/${id}`, 'PUT', data);
+    return useHttp(`/v1/answer/${id}`, "PUT", data);
   }
 
   async deleteAnswer(id) {
-    return useHttp(`/v1/answer/${id}`, 'DELETE');
+    return useHttp(`/v1/answer/${id}`, "DELETE");
   }
 
   // Category endpoints
   async getAllCategories() {
-    return useHttp('/v1/category/', "GET");
+    return useHttp("/v1/category/", "GET");
   }
 
   async createCategory(data) {
-    return useHttp(`/v1/category/`, 'POST', data);
+    return useHttp(`/v1/category/`, "POST", data);
   }
 
   async getCategory(id) {
@@ -41,20 +41,20 @@ export default class QuizApi {
   }
 
   async updateCategory(id, data) {
-    return useHttp(`/v1/category/${id}`, 'PUT', data);
+    return useHttp(`/v1/category/${id}`, "PUT", data);
   }
 
   async deleteCategory(id) {
-    return useHttp(`/v1/category/${id}`, 'DELETE');
+    return useHttp(`/v1/category/${id}`, "DELETE");
   }
 
   // Feedback endpoints
   async getAllFeedbacks() {
-    return useHttp('/v1/feedback/', "GET");
+    return useHttp("/v1/feedback/", "GET");
   }
 
   async createFeedback(data) {
-    return useHttp(`/v1/feedback/`, 'POST', data);
+    return useHttp(`/v1/feedback/`, "POST", data);
   }
 
   async getFeedback(id) {
@@ -62,20 +62,20 @@ export default class QuizApi {
   }
 
   async updateFeedback(id, data) {
-    return useHttp(`/v1/feedback/${id}`, 'PUT', data);
+    return useHttp(`/v1/feedback/${id}`, "PUT", data);
   }
 
   async deleteFeedback(id) {
-    return useHttp(`/v1/feedback/${id}`, 'DELETE');
+    return useHttp(`/v1/feedback/${id}`, "DELETE");
   }
 
   // Question endpoints
   async getAllQuestions() {
-    return useHttp('/v1/question/', "GET");
+    return useHttp("/v1/question/", "GET");
   }
 
   async createQuestion(data) {
-    return useHttp(`/v1/question/`, 'POST', data);
+    return useHttp(`/v1/question/`, "POST", data);
   }
 
   async getQuestion(id) {
@@ -83,20 +83,20 @@ export default class QuizApi {
   }
 
   async updateQuestion(id, data) {
-    return useHttp(`/v1/question/${id}`, 'PUT', data);
+    return useHttp(`/v1/question/${id}`, "PUT", data);
   }
 
   async deleteQuestion(id) {
-    return useHttp(`/v1/question/${id}`, 'DELETE');
+    return useHttp(`/v1/question/${id}`, "DELETE");
   }
 
   // Quiz endpoints
   async getAllQuizzes() {
-    return useHttp('/v1/quiz/', "GET");
+    return useHttp("/v1/quiz/", "GET");
   }
 
   async createQuiz(data) {
-    return useHttp(`/v1/quiz/`, 'POST', data);
+    return useHttp(`/v1/quiz/`, "POST", data);
   }
 
   async getQuiz(id) {
@@ -104,20 +104,20 @@ export default class QuizApi {
   }
 
   async updateQuiz(id, data) {
-    return useHttp(`/v1/quiz/${id}`, 'PUT', data);
+    return useHttp(`/v1/quiz/${id}`, "PUT", data);
   }
 
   async deleteQuiz(id) {
-    return useHttp(`/v1/quiz/${id}`, 'DELETE');
+    return useHttp(`/v1/quiz/${id}`, "DELETE");
   }
 
   // Result endpoints
   async getAllResults() {
-    return useHttp('/v1/result/', "GET");
+    return useHttp("/v1/result/", "GET");
   }
 
   async createResult(data) {
-    return useHttp(`/v1/result/`, 'POST', data);
+    return useHttp(`/v1/result/`, "POST", data);
   }
 
   async getResult(id) {
@@ -125,20 +125,20 @@ export default class QuizApi {
   }
 
   async updateResult(id, data) {
-    return useHttp(`/v1/result/${id}`, 'PUT', data);
+    return useHttp(`/v1/result/${id}`, "PUT", data);
   }
 
   async deleteResult(id) {
-    return useHttp(`/v1/result/${id}`, 'DELETE');
+    return useHttp(`/v1/result/${id}`, "DELETE");
   }
 
   // Session endpoints
   async getAllSessions() {
-    return useHttp('/v1/session/', "GET");
+    return useHttp("/v1/session/", "GET");
   }
 
   async createSession(data) {
-    return useHttp(`/v1/session/`, 'POST', data);
+    return useHttp(`/v1/session/`, "POST", data);
   }
 
   async getSession(id) {
@@ -146,20 +146,20 @@ export default class QuizApi {
   }
 
   async updateSession(id, data) {
-    return useHttp(`/v1/session/${id}`, 'PUT', data);
+    return useHttp(`/v1/session/${id}`, "PUT", data);
   }
 
   async deleteSession(id) {
-    return useHttp(`/v1/session/${id}`, 'DELETE');
+    return useHttp(`/v1/session/${id}`, "DELETE");
   }
 
   // User endpoints
   async getAllUsers() {
-    return useHttp('/v1/user/', "GET");
+    return useHttp("/v1/user/", "GET");
   }
 
   async createUser(data) {
-    return useHttp(`/v1/user/`, 'POST', data);
+    return useHttp(`/v1/user/`, "POST", data);
   }
 
   async getUser(id) {
@@ -167,10 +167,26 @@ export default class QuizApi {
   }
 
   async updateUser(id, data) {
-    return useHttp(`/v1/user/${id}`, 'PUT', data);
+    return useHttp(`/v1/user/${id}`, "PUT", data);
   }
 
   async deleteUser(id) {
-    return useHttp(`/v1/user/${id}`, 'DELETE');
+    return useHttp(`/v1/user/${id}`, "DELETE");
+  }
+
+  async getMostPopularCategory() {
+    return useHttp("/v1/category/most-popular-category/", "GET");
+  }
+
+  async getMostPopularQuiz() {
+    return useHttp("/v1/quiz/most-popular-quiz/", "GET");
+  }
+
+  async getTopPerformer() {
+    return useHttp("/v1/result/top-performer/", "GET");
+  }
+
+  async getLeastCorrectResultsUser() {
+    return useHttp("/v1/result/least-correct-results-user/", "GET");
   }
 }

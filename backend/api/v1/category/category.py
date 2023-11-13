@@ -29,3 +29,12 @@ async def update_category(id: int, category: CategoryIn, controller: CategoryCon
 async def delete_category(id: int, controller: CategoryController = Depends(Factory().get_category_controller)):
     await controller.delete(id)
     return {"message": "Category deleted successfully"}
+
+@category_router.get("/most-popular-category/", response_model=CategoryOut)
+async def get_most_popular_category(controller: CategoryController = Depends(Factory().get_category_controller)) -> CategoryOut:
+    try:
+        return await controller.get_most_popular_category()
+    except HTTPException as http_ex:
+        raise http_ex
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
